@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# trim Gravando_102.wav 3:09:20 3:10:03
+if [ "$1" = "trim" ];then
+   if [ "$2" != "" ];then
+         if [ "$3" != "" ];then
+            if [ "$4" != "" ];then
+               uselenght="$(echo $4 - $3 | timecalc | head -n1 | sed 's,^>>> ,,')"
+               ffmpeg -ss $3 -i $2 -to $uselenght -c copy ${2%%.*}_trimmed_$(echo "$3" | tr ':' '_')-$(echo "$4" | tr ':' '_').wav
+# https://stackoverflow.com/a/58253068/5623661, https://stackoverflow.com/a/46509213/5623661
+# output file: Gravando_102_trimmed_3_09_20-3_10_03.wav (remove file extension, include timestamp)
+            fi
+         fi
+   fi
+fi

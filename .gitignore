@@ -1,1 +1,3 @@
 *.wav
+include/timecalc-linux
+include/timecalc
